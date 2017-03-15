@@ -1,8 +1,8 @@
 <project>
     <modelVersion>4.0.0</modelVersion>
-    <groupId>org.kevoree.mwg</groupId>
-    <artifactId>mwg-sample</artifactId>
-    <description>mwg-sample</description>
+    <groupId>com.datathings</groupId>
+    <artifactId>greycat-sample</artifactId>
+    <description>greycat-sample</description>
     <version>1-SNAPSHOT</version>
 
     <properties>
