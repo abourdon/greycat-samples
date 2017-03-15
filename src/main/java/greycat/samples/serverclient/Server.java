@@ -1,4 +1,4 @@
-package greycat.samples;
+package greycat.samples.serverclient;
 
 
 import greycat.Graph;

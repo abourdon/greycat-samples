@@ -17,7 +17,7 @@ public class Minimal {
             System.out.println("Connected : " + isConnected);
 
             Node sensor0 = g.newNode(0, 0); //create new node for world 0 and time 0
-            sensor0.set("id", Type.INT, 12); //set the id attribute as an integer
+            sensor0.set("snesorId", Type.INT, 12); //set the id attribute as an integer
             sensor0.set("name",Type.STRING, "sensor0"); //set the name attribute as a string
 
             System.out.println(sensor0); //print {"world":0,"time":0,"id":1,"id":19,"name":"sensor0"}
