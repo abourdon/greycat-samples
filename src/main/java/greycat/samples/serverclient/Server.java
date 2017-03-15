@@ -11,7 +11,7 @@ public class Server {
     public static void main(String[] args) {
         Graph g = new GraphBuilder()
                 .withMemorySize(10000) //cache size before sync to disk
-                .withStorage(new LevelDBStorage("mwg_db"))
+                .withStorage(new LevelDBStorage("greycat_db"))
                 .build();
         g.connect(isConnected -> {
             new WSServer(g, 8050).start();
