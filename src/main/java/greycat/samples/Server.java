@@ -1,9 +1,10 @@
-package mwg.sample;
+package greycat.samples;
 
-import org.mwg.Graph;
-import org.mwg.GraphBuilder;
-import org.mwg.LevelDBStorage;
-import org.mwg.WSServer;
+
+import greycat.Graph;
+import greycat.GraphBuilder;
+import greycat.leveldb.LevelDBStorage;
+import greycat.websocket.WSServer;
 
 public class Server {
 

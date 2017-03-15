@@ -1,9 +1,10 @@
-package mwg.sample;
+package greycat.samples;
 
-import org.mwg.Graph;
-import org.mwg.GraphBuilder;
-import org.mwg.LevelDBStorage;
-import org.mwg.Node;
+import greycat.Graph;
+import greycat.GraphBuilder;
+import greycat.Node;
+import greycat.Type;
+import greycat.leveldb.LevelDBStorage;
 
 import java.util.Random;
 
@@ -23,14 +24,14 @@ public class Storage {
         g.connect(isConnected -> {
 
             Node sensor = g.newNode(0, System.currentTimeMillis()); //create new node for world 0 and time 0
-            sensor.set("id", Math.abs(rand.nextInt()));
-            sensor.set("value", rand.nextInt());
-            g.index("sensors", sensor, "id", res -> {
+            sensor.set("id", Type.INT, Math.abs(rand.nextInt()));
+            sensor.set("value", Type.INT, rand.nextInt());
+            g.index(0,0,"sensors", res -> {
                 g.save(saveResult -> {
-                    g.findAll(0, System.currentTimeMillis(), "sensors", allSensorsNow -> {
+                    g.index(0, System.currentTimeMillis(), "sensors", nodeIndex -> {
                         System.out.println("All sensors indexed:");
-                        for (Node sensorNow : allSensorsNow) {
-                            System.out.println("\t" + sensorNow.toString());
+                        for(int i=0;i<nodeIndex.size();i++){
+                            System.out.println("\t" + nodeIndex.getAt(i).toString());
                         }
 
                     });
