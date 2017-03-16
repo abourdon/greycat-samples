@@ -14,7 +14,7 @@ public class Index {
         g.connect(isConnected -> {
 
             Node sensor0 = g.newNode(0, 0);
-            sensor0.set("snesorId", Type.STRING, "4494F");
+            sensor0.set("sensorId", Type.STRING, "4494F");
             sensor0.set("name", Type.STRING, "sensor0");
             sensor0.set("value", Type.DOUBLE, 26.2); //set the value of the sensor
 
