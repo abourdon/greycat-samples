@@ -31,7 +31,8 @@ public class Minimal {
             //Let's display the room0 node to see what's inside
             System.out.println(room0); //print {"world":0,"time":0,"id":2,"name":"room0","sensors":[1]}
 
-            room0.relation("sensors", (Node[] sensors) -> { //iterate over the saved sensors relation
+            //iterate over the saved sensors relation from room0
+            room0.relation("sensors", (Node[] sensors) -> {
                 System.out.println("Relationship Sensors:");
                 for (Node sensor : sensors) {
                     System.out.println("\t" + sensor.toString());
