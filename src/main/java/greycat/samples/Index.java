@@ -23,9 +23,6 @@ public class Index {
             room0.addToRelation("sensors", sensor0);
 
 
-
-
-
 //            g.index("rooms", room0, "name", processResult -> { //index the node room0
 //                g.index("sensors", sensor0, "id", processResult2 -> { //index the node sensor0
 //                    g.indexNames(0,0,indexNames->{
