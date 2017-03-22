@@ -21,6 +21,7 @@ public class TaskAPI {
             room0.set("name", Type.STRING, "room0");
             room0.addToRelation("sensors", sensor0);
 
+
 //            g.index("rooms", room0, "name", (r) -> {
 //                fromindex("rooms")
 //                        .selectWith("name", "room0")
