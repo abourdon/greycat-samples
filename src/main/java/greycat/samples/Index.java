@@ -1,10 +1,7 @@
 package greycat.samples;
 
 
-import greycat.Graph;
-import greycat.GraphBuilder;
-import greycat.Node;
-import greycat.Type;
+import greycat.*;
 
 public class Index {
 
@@ -18,45 +15,36 @@ public class Index {
             sensor0.set("name", Type.STRING, "sensor0");
             sensor0.set("value", Type.DOUBLE, 26.2); //set the value of the sensor
 
-            Node room0 = g.newNode(0, 0);
-            room0.set("name", Type.STRING, "room0");
-            room0.addToRelation("sensors", sensor0);
+            Node kitchenNode = g.newNode(0, 0);
+            kitchenNode.set("name", Type.STRING, "kitchen");
+            kitchenNode.addToRelation("sensors", sensor0);
+
+            Node LivingNode = g.newNode(0, 0);
+            LivingNode.set("name", Type.STRING, "living");
+
+            //Get from the graph an index called roomIndex
+            g.index(0, 0, "rooms", roomIndex -> {
+                //Add a room to the index of rooms to be able to retrieve it fast by its name
+                roomIndex.addToIndex(kitchenNode, "name");
+                roomIndex.addToIndex(LivingNode, "name");
+
+                roomIndex.find(rooms -> {
+                    for (Node room : rooms) {
+                        System.out.println(room);
+                    }
+                });
+
+                roomIndex.find(rooms -> {
+                    System.out.println("found: "+rooms.length+" node!");
+                    for (Node room : rooms) {
+                        System.out.println(room);
+                    }
+                },"name","kitchen"); //here we ask to filter only the node with name = kitchen.
+
+            });
 
 
-//            g.index("rooms", room0, "name", processResult -> { //index the node room0
-//                g.index("sensors", sensor0, "id", processResult2 -> { //index the node sensor0
-//                    g.indexNames(0,0,indexNames->{
-//                        System.out.println("Index names in Graph:");
-//                        for (String indexName : indexNames) {
-//                            System.out.println("\t" + indexName);
-//                        }
-//                    });
-//                    g.find(0, System.currentTimeMillis(), "rooms", "name=room0", (Node[] rooms) -> {
-//                        System.out.println("Rooms found by string query:");
-//                        for (Node roomNow : rooms) {
-//                            System.out.println("\t" + roomNow.toString());
-//                        }
-//                    });
-//
-//                    g.find(0, System.currentTimeMillis(), "sensors", "id=4494F", (Node[] sensors) -> {
-//                        System.out.println("Sensors found by string query:");
-//                        for (Node sensorNow : sensors) {
-//                            System.out.println("\t" + sensorNow.toString());
-//                        }
-//                    });
-//
-//                    g.findAll(0, System.currentTimeMillis(), "sensors", allSensorsNow -> {
-//                        System.out.println("All sensors indexed:");
-//                        for (Node sensorNow : allSensorsNow) {
-//                            System.out.println("\t" + sensorNow.toString());
-//                        }
-//                    });
-//
-//                });
-//            });
-//
         });
-
     }
 
 }
