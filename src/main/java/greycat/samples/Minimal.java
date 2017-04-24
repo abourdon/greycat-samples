@@ -18,11 +18,11 @@ public class Minimal {
             System.out.println("Connected : " + isConnected);
 
             Node sensor0 = g.newNode(0, 0); //create a new node for world 0 and time 0
-            sensor0.set("snesorId", Type.INT, 12); //set the id attribute as an integer
+            sensor0.set("sensorId", Type.INT, 12); //set the id attribute as an integer
             sensor0.set("name",Type.STRING, "sensor0"); //set the name attribute as a string
 
             //Display the first node we created
-            System.out.println(sensor0); //print {"world":0,"time":0,"id":1,"snesorId":12,"name":"sensor0"}
+            System.out.println(sensor0); //print {"world":0,"time":0,"id":1,"sensorId":12,"name":"sensor0"}
 
             Node room0 = g.newNode(0, 0); //create new node for world 0 and time 0
             room0.set("name",Type.STRING, "room0"); //set the name attribute
