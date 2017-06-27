@@ -32,7 +32,7 @@ public class Minimal {
             System.out.println(room0); //print {"world":0,"time":0,"id":2,"name":"room0","sensors":[1]}
 
             //iterate over the saved sensors relation from room0
-            room0.relation("sensors", (Node[] sensors) -> {
+            room0.traverse("sensors", (Node[] sensors) -> {
                 System.out.println("Relationship Sensors:");
                 for (Node sensor : sensors) {
                     System.out.println("\t" + sensor.toString());

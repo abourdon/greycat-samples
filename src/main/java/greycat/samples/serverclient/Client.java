@@ -24,7 +24,7 @@ public class Client {
 
             g.index(0,0,"sensors", nodeIndex->{
 
-                nodeIndex.addToIndex(sensor);
+                nodeIndex.update(sensor);
                 g.save(saveResult->{
                     g.index(0,System.currentTimeMillis(),"sensors", nodeIndexSaved->{
 
@@ -33,7 +33,7 @@ public class Client {
                                 System.out.println("\t" + n.toString());
                             }
                             g.disconnect(result -> System.out.println("GoodBye!"));
-                        });
+                        },0,0,null);
                     });
                 });
             });

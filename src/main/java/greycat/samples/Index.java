@@ -22,24 +22,27 @@ public class Index {
             Node LivingNode = g.newNode(0, 0);
             LivingNode.set("name", Type.STRING, "living");
 
+
+            g.declareIndex(0,"rooms",null,"name");
+
             //Get from the graph an index called roomIndex
             g.index(0, 0, "rooms", roomIndex -> {
                 //Add a room to the index of rooms to be able to retrieve it fast by its name
-                roomIndex.addToIndex(kitchenNode, "name");
-                roomIndex.addToIndex(LivingNode, "name");
+                roomIndex.update(kitchenNode);
+                roomIndex.update(LivingNode);
 
-                roomIndex.find(rooms -> {
+                roomIndex.findFrom(rooms -> {
                     for (Node room : rooms) {
                         System.out.println(room);
                     }
-                });
+                },null);
 
                 roomIndex.find(rooms -> {
                     System.out.println("found: "+rooms.length+" node!");
                     for (Node room : rooms) {
                         System.out.println(room);
                     }
-                },"name","kitchen"); //here we ask to filter only the node with name = kitchen.
+                },0, 0,"kitchen"); //here we ask to filter only the node with name = kitchen.
 
             });
 

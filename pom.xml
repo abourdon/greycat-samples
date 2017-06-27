@@ -6,7 +6,7 @@
     <version>1-SNAPSHOT</version>
 
     <properties>
-        <greycat.version>6</greycat.version>
+        <greycat.version>9-SNAPSHOT</greycat.version>
     </properties>
 
     <dependencies>

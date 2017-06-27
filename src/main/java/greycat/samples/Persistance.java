@@ -25,7 +25,7 @@ public class Persistance {
             sensor.set("value", Type.INT, rand.nextInt());
 
             g.index(0, 0, "sensors", nodeIndex -> {
-                nodeIndex.addToIndex(sensor);
+                nodeIndex.update(sensor);
                 //save the database here.
                 g.save(saveResult -> {
                     g.index(0, System.currentTimeMillis(), "sensors", nodeIndex2 -> {
@@ -37,7 +37,7 @@ public class Persistance {
                                     System.out.println("\t" + result[i].toString());
                                 }
                             }
-                        });
+                        },0, System.currentTimeMillis(),null);
 
                     });
                 });
