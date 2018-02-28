@@ -18,25 +18,33 @@ public class Client {
 
         g.connect((Boolean isConnected) -> {
 
+
             Node sensor = g.newNode(0, System.currentTimeMillis()); //create new node for world 0 and time 0
             sensor.set("sensorId", Type.INT, Math.abs(rand.nextInt()));
             sensor.set("value", Type.DOUBLE, rand.nextDouble());
 
-            g.index(0,0,"sensors", nodeIndex->{
 
-                nodeIndex.update(sensor);
-                g.save(saveResult->{
-                    g.index(0,System.currentTimeMillis(),"sensors", nodeIndexSaved->{
+            g.declareIndex(0, "sensors", new Callback<NodeIndex>() {
+                @Override
+                public void on(NodeIndex nodeIndex) {
+                    nodeIndex.update(sensor);
+                    
+                    g.save(saveResult -> {
+                        g.index(0, System.currentTimeMillis(), "sensors", nodeIndexSaved -> {
 
-                        nodeIndexSaved.find(nodes->{
-                            for (Node n: nodes) {
-                                System.out.println("\t" + n.toString());
-                            }
-                            g.disconnect(result -> System.out.println("GoodBye!"));
-                        },0,0,null);
+                            nodeIndexSaved.find(nodes -> {
+                                for (Node n : nodes) {
+                                    System.out.println("\t" + n.toString());
+                                }
+                                g.disconnect(result -> System.out.println("GoodBye!"));
+                            }, 0, 0, null);
+                        });
                     });
-                });
-            });
+                }
+            },"sensorId");
+
+
+
 
         });
     }

@@ -5,6 +5,7 @@ import greycat.Graph;
 import greycat.GraphBuilder;
 import greycat.leveldb.LevelDBStorage;
 import greycat.websocket.WSServer;
+import greycat.websocket.WSSharedServer;
 
 public class Server {
 
@@ -14,7 +15,7 @@ public class Server {
                 .withStorage(new LevelDBStorage("greycat_db"))
                 .build();
         g.connect(isConnected -> {
-            new WSServer(g, 8050).start();
+            new WSSharedServer(g, 8050).start();
             System.out.println("MWG Server listener  :8050");
         });
     }
